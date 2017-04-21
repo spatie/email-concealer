@@ -5,7 +5,7 @@ namespace Spatie\EmailConcealer;
 use ArrayIterator;
 use IteratorAggregate;
 
-class ConcealedEmailCollection implements IteratorAggregate
+final class ConcealedEmailCollection implements IteratorAggregate
 {
     /** @var string */
     private $domain;
@@ -23,7 +23,7 @@ class ConcealedEmailCollection implements IteratorAggregate
         return new self($domain);
     }
 
-    public function fill(array $emails): self
+    public function fill(iterable $emails): self
     {
         foreach ($emails as $email) {
             $this->add($email);
@@ -43,7 +43,7 @@ class ConcealedEmailCollection implements IteratorAggregate
             return;
         }
 
-        list($localPart) = explode('@', $email);
+        [$localPart] = explode('@', $email);
 
         while (in_array($localPart.'@'.$this->domain, $this->dictionary)) {
             $localPart = $this->addOrUpdateIncrement($localPart);

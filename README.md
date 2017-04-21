@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/email-concealer.svg?style=flat-square)](https://packagist.org/packages/spatie/email-concealer)
 [![Build Status](https://img.shields.io/travis/spatie/email-concealer/master.svg?style=flat-square)](https://travis-ci.org/spatie/email-concealer)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/551612c6-1cd3-416b-b6c8-9977ad97e307.svg?style=flat-square)](https://insight.sensiolabs.com/projects/551612c6-1cd3-416b-b6c8-9977ad97e307)
+[![StyleCI](https://styleci.io/repos/88886061/shield?branch=master)](https://styleci.io/repos/88886061)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/email-concealer.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/email-concealer)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/email-concealer.svg?style=flat-square)](https://packagist.org/packages/spatie/email-concealer)
 
