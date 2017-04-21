@@ -46,13 +46,13 @@ class ConcealedEmailCollection implements IteratorAggregate
         list($localPart) = explode('@', $email);
 
         while (in_array($localPart.'@'.$this->domain, $this->dictionary)) {
-            $localPart = $this->increment($localPart);
+            $localPart = $this->addOrUpdateIncrement($localPart);
         }
 
         $this->dictionary[$email] = $localPart.'@'.$this->domain;
     }
 
-    private function increment(string $string): string
+    private function addOrUpdateIncrement(string $string): string
     {
         $pattern = '/-(\d+$)/';
         $matches = [];
@@ -61,6 +61,8 @@ class ConcealedEmailCollection implements IteratorAggregate
             return $string.'-1';
         }
 
-        return preg_replace($pattern, '-'.($matches[1] + 1), $string);
+        $increment = $matches[1] + 1;
+
+        return preg_replace($pattern, "-{$increment}", $string);
     }
 }
