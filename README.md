@@ -1,4 +1,4 @@
-# Conceal e-mail addresses in a string by replacing their domain
+# Conceal e-mail addresses in a string
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/email-concealer.svg?style=flat-square)](https://packagist.org/packages/spatie/email-concealer)
 [![Build Status](https://img.shields.io/travis/spatie/email-concealer/master.svg?style=flat-square)](https://travis-ci.org/spatie/email-concealer)
@@ -6,7 +6,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/email-concealer.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/email-concealer)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/email-concealer.svg?style=flat-square)](https://packagist.org/packages/spatie/email-concealer)
 
-Conceal e-mail addresses in a string. Useful for concealing up production data—like MySQL dumps—so you can use it locally without worrying about having real addresses on your system.
+Conceal e-mail addresses in a string by replacing their domain. Useful for concealing up production data—like MySQL dumps—so you can use it locally without worrying about having real addresses on your system.
 
 ```php
 use Spatie\EmailConcealer\Concealer;

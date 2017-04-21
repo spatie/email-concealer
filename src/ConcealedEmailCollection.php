@@ -48,7 +48,7 @@ class ConcealedEmailCollection
             return;
         }
 
-        [$localPart] = explode('@', $email);
+        list($localPart) = explode('@', $email);
 
         while (in_array($localPart.'@'.$this->domain, $this->dictionary)) {
             $localPart = $this->increment($localPart);
