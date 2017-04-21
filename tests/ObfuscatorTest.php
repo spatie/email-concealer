@@ -4,9 +4,12 @@ namespace Spatie\ObfuscateEmails\Test;
 
 use PHPUnit\Framework\TestCase;
 use Spatie\ObfuscateEmails\Obfuscator;
+use Spatie\Snapshots\MatchesSnapshots;
 
 class ObfuscatorTest extends TestCase
 {
+    use MatchesSnapshots;
+
     /** @test */
     public function it_returns_the_same_string_if_nothing_needs_to_be_obfuscated()
     {
@@ -59,9 +62,10 @@ class ObfuscatorTest extends TestCase
     /** @test */
     public function it_can_obfusticate_emails_in_a_complex_file()
     {
-        $this->assertObfuscatesTo(
-            file_get_contents(__DIR__.'/fixtures/obfuscated.sql'),
-            file_get_contents(__DIR__.'/fixtures/original.sql')
+        $obfuscator = new Obfuscator();
+
+        $this->assertMatchesSnapshot(
+            $obfuscator->obfuscate(file_get_contents(__DIR__.'/fixtures/mysqldump.sql'))
         );
     }
 
