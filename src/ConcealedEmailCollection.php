@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\EmailObfuscator;
+namespace Spatie\EmailConcealer;
 
-class ObfuscatedEmailCollection
+class ConcealedEmailCollection
 {
     /** @var string */
     private $domain;
@@ -24,12 +24,12 @@ class ObfuscatedEmailCollection
 
     public function reduce(callable $callback, $initial)
     {
-        $emails = array_map(function ($obfuscated, $original) {
-            return compact('obfuscated', 'original');
+        $emails = array_map(function ($conceald, $original) {
+            return compact('conceald', 'original');
         }, $this->dictionary, array_keys($this->dictionary));
 
         return array_reduce($emails, function ($accumulator, $email) use ($callback) {
-            return $callback($accumulator, $email['obfuscated'], $email['original']);
+            return $callback($accumulator, $email['conceald'], $email['original']);
         }, $initial);
     }
 

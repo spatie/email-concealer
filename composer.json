@@ -1,11 +1,15 @@
 {
-    "name": "spatie/email-obfuscator",
-    "description": ":package_description",
+    "name": "spatie/email-concealer",
+    "description": "Conceal e-mail addresses in a string by replacing their domain",
     "keywords": [
         "spatie",
-        "email-obfuscator"
+        "email-concealer",
+        "emails",
+        "conceal",
+        "data",
+        "obfuscate"
     ],
-    "homepage": "https://github.com/spatie/email-obfuscator",
+    "homepage": "https://github.com/spatie/email-concealer",
     "license": "MIT",
     "authors": [
         {
@@ -24,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\EmailObfuscator\\": "src"
+            "Spatie\\EmailConcealer\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\EmailObfuscator\\Test\\": "tests"
+            "Spatie\\EmailConcealer\\Test\\": "tests"
         }
     },
     "scripts": {

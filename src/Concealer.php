@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\EmailObfuscator;
+namespace Spatie\EmailConcealer;
 
-class Obfuscator
+class Concealer
 {
     const REGEX = '/[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})/i';
 
@@ -26,13 +26,13 @@ class Obfuscator
         return $this;
     }
 
-    public function obfuscate(string $string): string
+    public function conceal(string $string): string
     {
         $emails = $this->extractEmails($string);
 
-        return ObfuscatedEmailCollection::make($this->domain, $emails)
-            ->reduce(function (string $string, string $obfuscatedEmail, string $originalEmail) {
-                return str_replace($originalEmail, $obfuscatedEmail, $string);
+        return ConcealedEmailCollection::make($this->domain, $emails)
+            ->reduce(function (string $string, string $concealdEmail, string $originalEmail) {
+                return str_replace($originalEmail, $concealdEmail, $string);
             }, $string);
     }
 

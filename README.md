@@ -1,19 +1,19 @@
-# Obfuscate e-mail addresses in a string
+# Conceal e-mail addresses in a string by replacing their domain
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/email-obfuscator.svg?style=flat-square)](https://packagist.org/packages/spatie/email-obfuscator)
-[![Build Status](https://img.shields.io/travis/spatie/email-obfuscator/master.svg?style=flat-square)](https://travis-ci.org/spatie/email-obfuscator)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/xxxxxxxxx.svg?style=flat-square)](https://insight.sensiolabs.com/projects/xxxxxxxxx)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/email-obfuscator.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/email-obfuscator)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/email-obfuscator.svg?style=flat-square)](https://packagist.org/packages/spatie/email-obfuscator)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/email-concealer.svg?style=flat-square)](https://packagist.org/packages/spatie/email-concealer)
+[![Build Status](https://img.shields.io/travis/spatie/email-concealer/master.svg?style=flat-square)](https://travis-ci.org/spatie/email-concealer)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/551612c6-1cd3-416b-b6c8-9977ad97e307.svg?style=flat-square)](https://insight.sensiolabs.com/projects/551612c6-1cd3-416b-b6c8-9977ad97e307)
+[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/email-concealer.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/email-concealer)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/email-concealer.svg?style=flat-square)](https://packagist.org/packages/spatie/email-concealer)
 
-Obfuscate e-mail addresses in a string. Useful for obfuscating up production data—like MySQL dumps—so you can use it locally without worrying about having real addresses on your system.
+Conceal e-mail addresses in a string. Useful for concealing up production data—like MySQL dumps—so you can use it locally without worrying about having real addresses on your system.
 
 ```php
-use Spatie\EmailObfuscator\Obfuscator;
+use Spatie\EmailConcealer\Concealer;
 
-$obfuscator = Obfuscator::create();
+$concealer = Concealer::create();
 
-$obfuscator->obfuscate('info@spatie.be');
+$concealer->conceal('info@spatie.be');
 // "info@example.com"
 ```
 
@@ -30,42 +30,42 @@ We publish all received postcards [on our company website](https://spatie.be/en/
 You can install the package via composer:
 
 ``` bash
-composer require spatie/email-obfuscator
+composer require spatie/email-concealer
 ```
 
 ## Usage
 
-To obfuscate a string, create an `Obfuscator` instance. and call the `obfuscate` method.
+To conceal a string, create an `Concealer` instance. and call the `conceal` method.
 
 ```php
-use Spatie\EmailObfuscator\Obfuscator;
+use Spatie\EmailConcealer\Concealer;
 
-$obfuscator = Obfuscator::create();
+$concealer = Concealer::create();
 
-$obfuscator->obfuscate('info@spatie.be');
+$concealer->conceal('info@spatie.be');
 // "info@example.com"
 ```
 
-The obfuscator processes every e-mail address it finds in the string. It will ensure that there aren't any unwanted duplicates if the local-part is the same. 
+The concealer processes every e-mail address it finds in the string. It will ensure that there aren't any unwanted duplicates if the local-part is the same. 
 
 ```php
-$obfuscator->obfuscate('info@spatie.be,info@foo.com,info@bar.com');
+$concealer->conceal('info@spatie.be,info@foo.com,info@bar.com');
 // "info@example.com,info-1@foo.com,info-2@bar.com"
 ```
 
-Equal e-mail addresses will always obfuscate to the same obfuscated address.
+Equal e-mail addresses will always conceal to the same conceald address.
 
 ```php
-$obfuscator->obfuscate('info@spatie.be,info@foo.com,info@spatie.be');
+$concealer->conceal('info@spatie.be,info@foo.com,info@spatie.be');
 // "info@example.com,info-1@example.com,info@example.com"
 ```
 
 If you want to use a different domain than `example.com`, use the `domain` method to set a new one.
 
 ```php
-$obfuscator = Obfuscator::create()->domain('foo.com');
+$concealer = Concealer::create()->domain('foo.com');
 
-echo $obfuscator->obfuscate('info@spatie.be'); // "info@foo.com"
+echo $concealer->conceal('info@spatie.be'); // "info@foo.com"
 ```
 
 ## Changelog
