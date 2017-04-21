@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Spatie\EmailConcealer\Concealer;
 use Spatie\Snapshots\MatchesSnapshots;
 
-class ConcealerTest extends TestCase
+class ObfuscatorTest extends TestCase
 {
     use MatchesSnapshots;
 
