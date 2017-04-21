@@ -24,12 +24,12 @@ class ConcealedEmailCollection
 
     public function reduce(callable $callback, $initial)
     {
-        $emails = array_map(function ($conceald, $original) {
-            return compact('conceald', 'original');
+        $emails = array_map(function ($concealed, $original) {
+            return compact('concealed', 'original');
         }, $this->dictionary, array_keys($this->dictionary));
 
         return array_reduce($emails, function ($accumulator, $email) use ($callback) {
-            return $callback($accumulator, $email['conceald'], $email['original']);
+            return $callback($accumulator, $email['concealed'], $email['original']);
         }, $initial);
     }
 

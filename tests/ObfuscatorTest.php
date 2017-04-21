@@ -11,7 +11,7 @@ class ConcealerTest extends TestCase
     use MatchesSnapshots;
 
     /** @test */
-    public function it_returns_the_same_string_if_nothing_needs_to_be_conceald()
+    public function it_returns_the_same_string_if_nothing_needs_to_be_concealed()
     {
         $this->assertConcealsTo('Hello', 'Hello');
     }

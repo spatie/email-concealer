@@ -31,8 +31,8 @@ class Concealer
         $emails = $this->extractEmails($string);
 
         return ConcealedEmailCollection::make($this->domain, $emails)
-            ->reduce(function (string $string, string $concealdEmail, string $originalEmail) {
-                return str_replace($originalEmail, $concealdEmail, $string);
+            ->reduce(function (string $string, string $concealedEmail, string $originalEmail) {
+                return str_replace($originalEmail, $concealedEmail, $string);
             }, $string);
     }
 

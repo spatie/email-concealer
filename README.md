@@ -53,7 +53,7 @@ $concealer->conceal('info@spatie.be,info@foo.com,info@bar.com');
 // "info@example.com,info-1@foo.com,info-2@bar.com"
 ```
 
-Equal e-mail addresses will always conceal to the same conceald address.
+Equal e-mail addresses will always conceal to the same concealed address.
 
 ```php
 $concealer->conceal('info@spatie.be,info@foo.com,info@spatie.be');
