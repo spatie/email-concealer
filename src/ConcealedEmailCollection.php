@@ -2,7 +2,10 @@
 
 namespace Spatie\EmailConcealer;
 
-class ConcealedEmailCollection
+use ArrayIterator;
+use IteratorAggregate;
+
+class ConcealedEmailCollection implements IteratorAggregate
 {
     /** @var string */
     private $domain;
@@ -10,39 +13,31 @@ class ConcealedEmailCollection
     /** @var array */
     private $dictionary = [];
 
-    public function __construct(string $domain, array $emails)
+    public function __construct(string $domain)
     {
         $this->domain = $domain;
-
-        $this->fill($emails);
     }
 
-    public static function make(string $domain, array $emails): self
+    public static function make(string $domain): self
     {
-        return new self($domain, $emails);
+        return new self($domain);
     }
 
-    public function reduce(callable $callback, $initial)
-    {
-        $emails = array_map(function ($concealed, $original) {
-            return compact('concealed', 'original');
-        }, $this->dictionary, array_keys($this->dictionary));
-
-        return array_reduce($emails, function ($accumulator, $email) use ($callback) {
-            return $callback($accumulator, $email['concealed'], $email['original']);
-        }, $initial);
-    }
-
-    private function fill(array $emails): self
+    public function fill(array $emails): self
     {
         foreach ($emails as $email) {
-            $this->push($email);
+            $this->add($email);
         }
 
         return $this;
     }
 
-    private function push(string $email)
+    public function getIterator()
+    {
+        return new ArrayIterator($this->dictionary);
+    }
+
+    private function add(string $email)
     {
         if (array_key_exists($email, $this->dictionary)) {
             return;

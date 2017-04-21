@@ -28,12 +28,15 @@ class Concealer
 
     public function conceal(string $string): string
     {
-        $emails = $this->extractEmails($string);
+        $concealedEmails = ConcealedEmailCollection::make($this->domain)->fill(
+            $this->extractEmails($string)
+        );
 
-        return ConcealedEmailCollection::make($this->domain, $emails)
-            ->reduce(function (string $string, string $concealedEmail, string $originalEmail) {
-                return str_replace($originalEmail, $concealedEmail, $string);
-            }, $string);
+        foreach ($concealedEmails as $original => $concealed) {
+            $string = str_replace($original, $concealed, $string);
+        }
+
+        return $string;
     }
 
     protected function extractEmails(string $string): array
