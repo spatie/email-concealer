@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\ObfuscateEmails;
+namespace Spatie\EmailObfuscator;
 
 class ObfuscatedEmailCollection
 {

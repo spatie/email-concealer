@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\ObfuscateEmails\Test;
+namespace Spatie\EmailObfuscator\Test;
 
 use PHPUnit\Framework\TestCase;
-use Spatie\ObfuscateEmails\Obfuscator;
+use Spatie\EmailObfuscator\Obfuscator;
 use Spatie\Snapshots\MatchesSnapshots;
 
 class ObfuscatorTest extends TestCase

@@ -1,11 +1,11 @@
 {
-    "name": "spatie/obfuscate-emails",
+    "name": "spatie/email-obfuscator",
     "description": ":package_description",
     "keywords": [
         "spatie",
-        "obfuscate-emails"
+        "email-obfuscator"
     ],
-    "homepage": "https://github.com/spatie/obfuscate-emails",
+    "homepage": "https://github.com/spatie/email-obfuscator",
     "license": "MIT",
     "authors": [
         {
@@ -24,12 +24,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\ObfuscateEmails\\": "src"
+            "Spatie\\EmailObfuscator\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\ObfuscateEmails\\Test\\": "tests"
+            "Spatie\\EmailObfuscator\\Test\\": "tests"
         }
     },
     "scripts": {
