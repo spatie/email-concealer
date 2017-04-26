@@ -20,19 +20,20 @@ class ConcealerTest extends TestCase
     public function it_can_replace_an_email_address_domain_with_example_dot_com()
     {
         $this->assertConcealsTo('hello@example.com', 'hello@spatie.be');
+        $this->assertConcealsTo('hello@example.com', 'hello@mountain.bike');
     }
 
     /** @test */
     public function it_can_replace_multiple_email_address_domain_with_example_dot_com()
     {
         $this->assertConcealsTo(
-            'foo@example.com bar@example.com',
-            'foo@spatie.be bar@spatie.be'
+            'foo@example.com bar@example.com baz@example.com',
+            'foo@spatie.be bar@spatie.be baz@mountain.bike'
         );
 
         $this->assertConcealsTo(
-            "'foo@example.com','bar@example.com'",
-            "'foo@spatie.be','bar@spatie.be'"
+            "'foo@example.com','bar@example.com','baz@example.com'",
+            "'foo@spatie.be','bar@spatie.be','baz@mountain.bike'"
         );
     }
 
@@ -40,8 +41,8 @@ class ConcealerTest extends TestCase
     public function it_makes_emails_with_the_same_local_part_and_a_different_domain_unique()
     {
         $this->assertConcealsTo(
-            'foo@example.com foo-1@example.com',
-            'foo@spatie.be foo@github.com'
+            'foo@example.com foo-1@example.com foo-2@example.com',
+            'foo@spatie.be foo@github.com foo@mountain.bike'
         );
 
         $this->assertConcealsTo(
