@@ -11,6 +11,23 @@ class ConcealerTest extends TestCase
     use MatchesSnapshots;
 
     /** @test */
+    public function it_returns_the_concealer_instance()
+    {
+        $concealer = new Concealer();
+
+        $this->assertInstanceOf(Concealer::class, $concealer->create());
+    }
+
+    /** @test */
+    public function it_can_conceal_the_specific_domain()
+    {
+        $concealer = new Concealer();
+        $concealer->domain('spatie.be');
+
+        $this->assertEquals('hello@spatie.be', $concealer->conceal('hello@example.com'));
+    }
+
+    /** @test */
     public function it_returns_the_same_string_if_nothing_needs_to_be_concealed()
     {
         $this->assertConcealsTo('Hello', 'Hello');
