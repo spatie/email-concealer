@@ -57,7 +57,7 @@ final class ConcealedEmailCollection implements IteratorAggregate
         $pattern = '/-(\d+$)/';
         $matches = [];
 
-        if (!preg_match($pattern, $string, $matches)) {
+        if (! preg_match($pattern, $string, $matches)) {
             return $string.'-1';
         }
 
