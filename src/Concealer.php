@@ -44,7 +44,7 @@ class Concealer
         $matches = [];
         preg_match_all(static::REGEX, $string, $matches);
 
-        if (!$matches) {
+        if (! $matches) {
             return [];
         }
 
