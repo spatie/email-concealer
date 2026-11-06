@@ -11,18 +11,21 @@ jobs:
         runs-on: ${{ matrix.os }}
         strategy:
             matrix:
-                php: [8.1, 8.0,  7.4]
+                php: ['8.6', '8.5', '8.1', '8.0', '7.4']
                 dependency-version: [prefer-lowest, prefer-stable]
                 os: [ubuntu-latest, windows-latest]
 
         name: P${{ matrix.php }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
         steps:
+            - name: Preserve fixture and snapshot line endings
+              run: git config --global core.autocrlf false
+
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Cache dependencies
-              uses: actions/cache@v2
+              uses: actions/cache@v4
               with:
                   path: ~/.composer/cache/files
                   key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
@@ -32,13 +35,20 @@ jobs:
               with:
                   php-version: ${{ matrix.php }}
                   extensions: json, dom, curl, libxml, mbstring
+                  ini-values: error_reporting=E_ALL
                   coverage: none
 
             - name: Install dependencies
-              run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+              run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+
+            - name: Show runtime and dependencies
+              run: |
+                  php --version
+                  composer show
+                  git ls-files --eol tests
 
             - name: Configure matchers
-              uses: mheap/phpunit-matcher-action@master
+              uses: mheap/phpunit-matcher-action@v1
 
             - name: Execute tests
               run: vendor/bin/phpunit --teamcity
