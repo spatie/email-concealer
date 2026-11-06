@@ -18,6 +18,9 @@ jobs:
         name: P${{ matrix.php }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
         steps:
+            - name: Preserve fixture and snapshot line endings
+              run: git config --global core.autocrlf false
+
             - name: Checkout code
               uses: actions/checkout@v4
 
@@ -42,6 +45,7 @@ jobs:
               run: |
                   php --version
                   composer show
+                  git ls-files --eol tests
 
             - name: Configure matchers
               uses: mheap/phpunit-matcher-action@v1
